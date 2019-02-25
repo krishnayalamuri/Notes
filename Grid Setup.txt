@@ -1,0 +1,70 @@
+To Start HUB:
+java -jar selenium-server-standalone-3.11.0.jar -role hub
+
+//To Fix Certificate issue in Chrome
+{"pattern":"[*.]wdf.sap.corp","filter":{"ISSUER":{"CN":"SSO_CA"}}}
+
+
+Safari Setup:
+sudo /usr/bin/safaridriver
+/usr/bin/safaridriver -p 1337
+
+To See Grid Console:
+http://localhost:4444/grid/console
+http://10.97.134.15:4444/grid/console
+
+
+To Start NODE:
+java -jar selenium-server-standalone-3.10.0.jar -role webdriver -hub http://localhost:4444/grid/register -port 5566
+
+To Start NODE with IE Driver:
+java -Dwebdriver.ie.driver=C:\Users\C5249742\Desktop\Selenium\IEDriverServer.exe -jar selenium-server-standalone-3.10.0.jar -role webdriver -hub http://localhost:4444/grid/register -port 5566 -browser browserName=ie,platform=WINDOWS
+
+To Start NODE with Edge Driver:
+java -Dwebdriver.edge.driver=C:\Automation\SW\Selenium\MicrosoftWebDriver.exe -jar selenium-server-standalone-3.11.0.jar -role webdriver -hub http://10.97.134.15:4444/grid/register -port 5577 -browser "browserName=MicrosoftEdge, platform=WINDOWS, maxInstances=10"
+
+
+To Start NODE with Chrome Driver:
+java -Dwebdriver.chrome.driver=C:\Users\C5249742\Desktop\Selenium\chromedriver.exe -jar selenium-server-standalone-3.10.0.jar -role webdriver -hub http://localhost:4444/grid/register -port 5566
+
+To Start Safari
+java -jar selenium-server-standalone-3.10.0.jar -role webdriver -hub http://10.52.110.180:4444/grid/register/ -port 5566 -browser browserName=safari
+
+To Start with IE&Chrome:
+java -Dwebdriver.ie.driver=C:\Users\C5249742\Desktop\Selenium\IEDriverServer.exe -Dwebdriver.chrome.driver=C:\Users\C5249742\Desktop\Selenium\chromedriver.exe -jar selenium-server-standalone-3.10.0.jar -role webdriver -hub http://localhost:4444/grid/register -port 5566
+
+java -Dwebdriver.ie.driver=C:\Automation\SW\Selenium\IEDriverServer.exe -Dwebdriver.chrome.driver=C:\Automation\SW\Selenium\chromedriver.exe -Dwebdriver.gecko.driver=C:\Automation\SW\Selenium\geckodriver.exe -jar selenium-server-standalone-3.11.0.jar -role webdriver -hub http://10.97.134.15:4444/grid/register -port 5566
+
+
+Mail Setup:
+System Admin e-mail address : krishna.reddy.yalamuri@sap.com/devops.cdggn@sap.com
+SMTP server  : mail.sap.corp
+User Name  : c5249742
+Password :
+SMTP port : 25
+Charset : UTF-8
+Default Content Type : HTML
+Reply To List : krishna.reddy.yalamuri@sap.com
+Default Subject : $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!
+Default Content : $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+Check console output at $BUILD_URL to view the results.
+
+
+test -DEnvironmentName=QA -DZipResults=YES -DTestSuite=REGRESSION
+
+<br/>
+<h1>Test Cases Execution Report:</h1><br/>
+${FILE,path="Report/HighLevelReport/FinalReport.html"}
+
+Results.Zip
+
+vasudha
+User: Vasudha 
+PW: DOTRK@007 
+
+BASF:
+https://jaas.wdf.sap.corp:30943
+
+http://mo-72ba9b5fe.mo.sap.corp:8084 
+C5262957
+08851Aa0265@

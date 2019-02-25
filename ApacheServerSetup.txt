@@ -1,0 +1,9 @@
+Starting the Apache Server:
+1) Navigate to Apache bin folder
+2) Enter command: httpd.exe -k install -n "Apache HTTP Server"
+
+
+#PHP Configuration
+LoadModule php7_module "C:\PHP7\php7apache2_4.dll"
+AddType application/x-httpd-php .php
+PHPIniDir "C:\PHP7"

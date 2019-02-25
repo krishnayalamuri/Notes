@@ -1,0 +1,131 @@
+GIT Configuration:
+
+git config --global user.name "King Kong"
+git config --global user.email "king-kong@gmail.com"
+git config --global color.ui true
+git config --list
+git config --global http.sslVerify false									->Workaround
+git config --system http.sslCAPath /absolute/path/to/git/certificates		->Actual Resolution
+
+New Local Repository:
+git init
+
+Check Status:
+git status
+
+Clone a repository:
+git clone https://github.com/YourUsername/some-small-app.git							->HTTPS
+git clone git@github.com:YourUsername/your-app.git										->SSH
+git clone git@github.com:YourUsername/your-app.git this-name-is-much-better				->New Name for Repository
+
+
+Stage your changes:
+git add file1.txt file2.txt
+git add .		-> To add all files under the current directory
+git add --all|-A	-> To add all files including sub directory
+
+UnStage your changes:
+git rm --cached file1.txt
+git reset file1.txt
+
+Commit your changes:
+git commit -m "Valid comments"
+git commit -a -m "Valid comments"					-> Both stage and commit same time
+git commit --amend -m "Valid comments"				-> To amend to last commit
+git log												->will show you a list of commits
+
+Undo Commit:
+git reset --soft HEAD^
+
+Push your changes to GitHub:
+git push origin BranchName
+git push -u origin BranchName			->Run only "git push" next time!
+
+Incorporate upstream changes:
+git fetch
+git fetch origin
+
+Merge Code:
+git merge master						->Merge code from 'master' to current checkout branch
+git merge origin/master					->merges the branch referred to into the working directory
+
+Pull Code:
+git pull								->fetches updates from the default remote and merges into the working directory
+
+Rebase:
+git rebase master
+
+Switching between branches locally:
+git checkout master
+git branch												->Show branches local branches
+git branch -a											->Show all branches
+git checkout -b new-branch existing-branch				->Create a new branch from existing-branch and checkout
+git checkout -b new-branch origin/existing-branch		->Create a new branch from existing-branch and checkout from specific remote
+git branch new-branch									->Create a new branch from currently checkout branch
+git branch -d BranchName								->Deete Branch
+
+
+Link remote repository to your local repository:
+git remote add origin https://github.com/YourUsername/some-small-app.git		->HTTPS
+git remote add origin git@github.com:YourUsername/your-app.git					->SSH
+git remote -v																	->list all remote repositories you've connected to
+git remote show origin
+
+Reset:
+git reset HEAD~2				->branch backwards by two commits
+git reset HEAD foo.py			->will unstage foo.py
+git reset --soft HEAD			->The staged snapshot and working directory are not altered in any way.
+git reset --mixed HEAD			->The staged snapshot is updated to match the specified commit, but the working directory is not affected. This is the default option.
+git reset --hard HEAD	        ->The staged snapshot and the working directory are both updated to match the specified commit.
+
+Checkout:
+git checkout HEAD foo.py		-> discarding unstaged changes to foo.p
+
+revert:
+git revert					->creates a new commit that undoes the changes from a previous commit
+
+Merge conflict:
+git mergetool
+
+To commit your file:
+git checkout --ours -- somepath/foobar.bin
+git add somepath/foobar.bin
+git commit
+
+To commit the file from the other branch:
+git checkout --theirs -- somepath/foobar.bin
+git add somepath/foobar.bin
+git commit
+
+Delete Bramches:
+git branch -d branch_name						->Delete local Branch
+git branch -D branch_name						->Delete local Branch with force option
+git push <remote_name> --delete <branch_name>	->Delete remote Branch
+git push <remote_name> :<branch_name>			>Delete remote Branch
+
+
+
+SSH Configuration:
+
+1)creates a new ssh key:
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+	->When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location
+	-> press Enter, fir PassPhrase aslo
+
+2)Ensure the ssh-agent is running:
+eval $(ssh-agent -s)
+
+3)Add your SSH private key to the ssh-agent:
+ssh-add ~/.ssh/id_rsa
+
+
+Adding a new SSH key to your GitHub account:
+1)Copy the SSH key(public key) to your clipboard[clip < ~/.ssh/id_rsa.pub]
+2)In Browser, click your profile photo, then click Settings
+3)click SSH and GPG keys
+4)Click New SSH key or Add SSH key
+5)In the "Title" field, add a descriptive label for the new key
+6)Paste your key into the "Key" field
+7)Click Add SSH key
+
+
