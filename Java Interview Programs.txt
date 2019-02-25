@@ -1,0 +1,170 @@
+package example;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.testng.annotations.Test;
+
+public class InterviewEx {
+ 
+	
+	public void reverseNumber() {
+		int iInputNumber = 123456789;
+		int iTempNum = iInputNumber;
+		int iReverseNum=0;
+		
+		while((iTempNum % 10) > 0){
+			iReverseNum = (iReverseNum * 10) + (iTempNum % 10);
+			iTempNum = iTempNum/10;
+		}
+		
+		System.out.println("Reverse Number is :" + iReverseNum );
+	}
+	
+	public void characterCount() {
+		String iInputString = "Krishna Reddy Yalamuri";
+		int iStrLen = iInputString.length();
+		
+		//Linked  hashmap to keep order of insertion
+		HashMap<Character,Integer> hm= new LinkedHashMap<Character,Integer>();
+		
+		for (int i=0;i<iStrLen;i++){
+			char ch=iInputString.charAt(i);
+			if(hm.containsKey(ch)){
+				int iCount = hm.get(ch);
+				hm.put(ch, iCount+1);
+			}else{
+				hm.put(ch, 1);
+			}
+		}
+
+		Iterator<Character> it=hm.keySet().iterator();
+		while(it.hasNext()){
+			char key =it.next();
+			System.out.println("Key :" + key + ", Value :" + hm.get(key) );
+		}
+		/*for (Object key:hm.keySet()){
+			System.out.println("Key :" + key.toString() + ", Value :" + hm.get(key) );
+		}*/
+	}
+	
+	public void nonRepeatedFirstCharacter() {
+		String iInputString = "greeksforGreeks";
+		int iStrLen = iInputString.length();
+		
+		//Linked  hashmap to keep order of insertion
+		HashMap<Character,Integer> hm= new LinkedHashMap<Character,Integer>();
+		
+		for (int i=0;i<iStrLen;i++){
+			char ch=iInputString.charAt(i);
+			//ch=Character.toUpperCase(ch);
+			if(hm.containsKey(ch)){
+				int iCount = hm.get(ch);
+				hm.put(ch, iCount+1);
+			}else{
+				hm.put(ch, 1);
+			}
+		}
+		
+		for (HashMap.Entry<Character,Integer> entry:hm.entrySet()){
+			if (entry.getValue() == 1){
+			System.out.println("Key :" + entry.getKey() + ", Value :" + entry.getValue() );
+			break;
+			}
+		}
+	}
+	
+	public void isCompleteString() {
+			String testingString="krishna";
+	        String resultString= "";
+	        char[] toChar = testingString.toCharArray();
+	        int length = toChar.length;
+	        for (int i = 0; i < length; i++) {
+	            if(resultString.indexOf(toChar[i])==-1){
+	                resultString=resultString.concat(toChar[i]+"");
+	            }
+	        }
+
+	        if(resultString.length()==26)System.out.println("YES");
+	        else System.out.println("NO");
+	  }
+	
+	public void allCharacterCount(){
+		String strInputStr = "Krishna Reddy Yalamuri";
+		 int a=0,b=0,c=0,d=0,e=0;
+		 char ch;
+		 int len=strInputStr.length();
+		 for(int i=0;i<len;i++)
+		 {
+			  ch = strInputStr.charAt(i);
+			  if(ch>=65 && ch<=90) // Condition for Uppercase letters
+			  a++;
+			  if(ch>='a' && ch <='z')
+			  b++;
+			  if(ch>='0' && ch<='9')
+			  c++;
+			  if(ch=='A' || ch=='E' || ch=='I' || ch=='O' || ch=='U' ||
+			  ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u')
+			  d++;
+			  if(ch==' ') // Condition for spaces
+			  e++;
+		   }
+	 System.out.println("\nNo. of Uppercase letters = " +a);
+	 System.out.println("\nNo.of Lowercase letters = " +b);
+	 System.out.println("\nNo. of Numerals = " +c);
+	 System.out.println("\nNo. of Vowels = " +d);
+	 System.out.println("\nNo. of Spaces = " +e);
+	 System.out.println("\nNo. of Special Characters = "+(len-(a+b+c+e)));
+	 }
+	
+	@Test
+	public void lowerUpperDigits(){
+		
+		String strInputStr = "kri";
+		String strlow = "";
+		String strup = "";
+		String strdigit = "";
+		char ch;
+
+		Pattern lowerPat=Pattern.compile("[a-z]");
+		Pattern upperPat=Pattern.compile("[A-Z]");
+		Pattern digitPat=Pattern.compile("[0-9]");
+		
+		Matcher lowmat=lowerPat.matcher(strInputStr);
+		Matcher upmat=upperPat.matcher(strInputStr);
+		Matcher digmat=digitPat.matcher(strInputStr);
+		
+		System.out.println("string contains only lower case letters :" + lowmat.matches());
+		System.out.println("string contains only uppper case letters :" + strInputStr.matches("[A-Z]"));
+		System.out.println("string contains only digits letters : " + strInputStr.matches("[0-9]"));
+		System.out.println("string contains only alphabets letters :" + strInputStr.matches("[a-zA-Z]"));
+		System.out.println("string contains alphabets,digits letters :" + strInputStr.matches("[a-zA-Z0-9]"));
+		
+		if(lowmat != null){
+			while(lowmat.find()){
+				ch= strInputStr.charAt(lowmat.start());
+				strlow = strlow + ch;
+			}
+		}
+		
+		if(upmat != null){
+			while(upmat.find()){
+				ch= strInputStr.charAt(upmat.start());
+				strup = strup + ch;
+			}
+		}
+		if(digmat != null){
+			while(digmat.find()){
+				ch= strInputStr.charAt(digmat.start());
+				strdigit = strdigit + ch;
+			}
+		}
+				
+		System.out.println("lower case letters in string :" + strlow);
+		System.out.println("upper case letters in string :" + strup);
+		System.out.println("digit letters in string :" + strdigit);
+	}
+}
